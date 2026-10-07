@@ -1,0 +1,37 @@
+[
+  {
+    "route": "/",
+    "status": 302,
+    "content_type": "text/html; charset=utf-8",
+    "location": "/create-root/",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "route": "/_accounts/login/",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "location": null,
+    "body_sha256": "8ac358ffd478cfb0e79dd8f8dab07f62c6abbafdfefedacf59d457516f89b30a"
+  },
+  {
+    "route": "/_accounts/sign-up/",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "location": null,
+    "body_sha256": "41ec817214ced3afcd41718825e310cc655ae3967dfa6a8abfa2aac0cbe56079"
+  },
+  {
+    "route": "/_search/",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "location": null,
+    "body_sha256": "ea0c45e21a0c9d3cd70b34666c58106f276f935d9116feaf392ab22e9518e769"
+  },
+  {
+    "route": "/j4-missing",
+    "status": 301,
+    "content_type": "text/html; charset=utf-8",
+    "location": "/j4-missing/",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]
