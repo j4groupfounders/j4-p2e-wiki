@@ -1,0 +1,8 @@
+{
+  "can_assign": false,
+  "can_assign_owner": false,
+  "can_change_permissions": false,
+  "can_delete": false,
+  "can_moderate": false,
+  "can_admin": false
+}
