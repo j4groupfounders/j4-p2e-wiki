@@ -1,0 +1,32 @@
+[
+  {
+    "file": "src/wiki/core/permissions.py",
+    "name": "anonymous-assign",
+    "old": "return not user.is_anonymous and user.has_perm(\"wiki.assign\")",
+    "new": "return True"
+  },
+  {
+    "file": "src/wiki/core/permissions.py",
+    "name": "anonymous-delete",
+    "old": "return not user.is_anonymous and article.can_write(user)",
+    "new": "return True"
+  },
+  {
+    "file": "src/wiki/core/permissions.py",
+    "name": "anonymous-moderate",
+    "old": "return not user.is_anonymous and user.has_perm(\"wiki.moderate\")",
+    "new": "return True"
+  },
+  {
+    "file": "src/wiki/core/permissions.py",
+    "name": "anonymous-admin",
+    "old": "return not user.is_anonymous and user.has_perm(\"wiki.admin\")",
+    "new": "return True"
+  },
+  {
+    "file": "src/wiki/core/permissions.py",
+    "name": "anonymous-permissions",
+    "old": "return not user.is_anonymous and (\n        article.owner == user or user.has_perm(\"wiki.assign\")\n    )",
+    "new": "return True"
+  }
+]

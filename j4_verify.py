@@ -19,7 +19,9 @@ project_detected=r.returncode!=0
 if m<0:assert not project_detected,'project tests failed'
 h=subprocess.run([sys.executable,'j4_http.py'],timeout=120)
 assert (E/'surface.json').exists(),'boot/probe infrastructure failed'
-harness_detected=h.returncode!=0
+model=subprocess.run([sys.executable,'j4_models.py'],timeout=30)
+assert (E/'models.json').exists(),'model infrastructure failed'
+harness_detected=h.returncode!=0 or model.returncode!=0
 result=dict(mutation=m,tests=len(cases),skipped=len(skips),project_detected=project_detected,harness_detected=harness_detected,combined=project_detected or harness_detected)
 (E/'result.json').write_text(json.dumps(result,indent=2));print(result)
 if m<0:assert not harness_detected,'HTTP characterization drift'
