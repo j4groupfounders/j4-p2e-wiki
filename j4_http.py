@@ -21,6 +21,13 @@ with (E/'boot.log').open('w') as log:
    else:raise RuntimeError('server did not boot')
    raw=resp.read().decode();assert resp.code<500,('HTTP 5xx infrastructure/runtime error',route)
    raw=re.sub(r'(name="csrfmiddlewaretoken" value=")[^"]+',r'\1NORMALIZED',raw)
+   if c['name']=='wiki' and route=='/_accounts/sign-up/':
+    # Exact random honeypot class and JS function, generated in UserCreationForm.
+    tokens=re.findall(r'function (f[A-Z0-9]{10})\(\)|class="([A-Z0-9]{10})"',raw)
+    for pair in tokens:
+     for token in pair:
+      if token:raw=raw.replace(token,'HONEYPOT_NORMALIZED')
+   (E/('body-'+str(len(rows))+'.html')).write_text(raw)
    rows.append(dict(route=route,status=resp.code,content_type=resp.headers.get('Content-Type'),location=resp.headers.get('Location'),body_sha256=hashlib.sha256(raw.encode()).hexdigest()))
   (E/'surface.json').write_text(json.dumps(rows,indent=2))
   if P('surface.json').exists():assert rows==json.loads(P('surface.json').read_text()),'HTTP drift'

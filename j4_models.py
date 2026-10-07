@@ -11,7 +11,7 @@ if c['name']=='todo':
 elif c['name']=='helpdesk':
  from helpdesk.models import Ticket,Queue
  q=Queue(id=1,slug='support',title='Support');t=Ticket(id=7,title='J4 fixture',queue=q,priority=1,status=1)
- data={'title':str(t),'ticket':t.ticket_for_url,'assigned':t.get_assigned_to,'priority':t.get_priority_css_class,'status_badge':t.get_status_badge_class,'url':str(t.get_absolute_url())}
+ data={'title':str(t),'ticket':t.ticket_for_url,'assigned':str(t.get_assigned_to),'priority':t.get_priority_css_class,'status_badge':t.get_status_badge_class,'url':str(t.get_absolute_url())}
 else:
  from django.contrib.auth.models import AnonymousUser
  from wiki.models import Article
