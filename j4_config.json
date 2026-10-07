@@ -1,0 +1,17 @@
+{
+  "name": "wiki",
+  "upstream": "django-wiki/django-wiki",
+  "folder": "wiki",
+  "settings": "tests.settings",
+  "tests": "tests",
+  "routes": [
+    "/",
+    "/_accounts/login/",
+    "/_accounts/sign-up/",
+    "/_search/",
+    "/j4-missing"
+  ],
+  "id": "p2-15-wiki",
+  "repo": "j4groupfounders/j4-p2e-wiki",
+  "source": "04ebb5b51a41ef1fca554d74aa1e5fd8840b8537"
+}

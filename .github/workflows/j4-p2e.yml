@@ -1,0 +1,42 @@
+name: J4 P2 batch 5
+on:
+  push:
+    branches: ['j4/p2e-*']
+permissions:
+  contents: read
+defaults:
+  run:
+    shell: bash --noprofile --norc -eo pipefail {0}
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        mutation: ${{ contains(github.ref, 'seeds') && fromJSON('[0,1,2,3,4]') || fromJSON('[-1]') }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install stable dependencies
+        run: |
+          if test -f j4-lock.txt; then
+            python -m pip install -r j4-lock.txt
+            python -m pip install --no-deps -e .
+          else
+            python -m pip install -c j4-framework.txt -r j4-test-deps.txt -e .
+          fi
+          mkdir -p Evidence
+          python -m pip freeze --exclude-editable > Evidence/lock.txt
+      - name: Verify one independent checkout
+        env:
+          J4_MUTATION: ${{ matrix.mutation }}
+        run: python j4_verify.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: evidence-${{ matrix.mutation }}
+          path: Evidence/
+          retention-days: 30

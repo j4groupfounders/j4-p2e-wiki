@@ -1,0 +1,6 @@
+pytest
+pytest-django
+pytest-cov
+ddt==1.6.0
+django-functest>=1.2,<1.6
+pygments==2.21.*
